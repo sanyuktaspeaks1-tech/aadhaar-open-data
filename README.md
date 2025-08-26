@@ -57,8 +57,141 @@ df["State"].unique()
 
 ```py
 df["State"].value_counts()
+```
 <img width="496" height="347" alt="image" src="https://github.com/user-attachments/assets/9c0130e6-48ba-4c6b-a28a-d0439eff77dc" />
+```py
+import pandas as pd
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+```
+
+## Python does not recognize State names so we need to comnvert string to numbers we can use One-Hot encoding or Label Encoder to do so
+
+
+```py
+from sklearn.preprocessing import LabelEncoder
+
+le_state = LabelEncoder()
+le_district = LabelEncoder()
+
+df["State_num"] = le_state.fit_transform(df["State"])
+df["District_num"] = le_district.fit_transform(df["District"])
 
 ```
+## Let`s perform clustering
+
+```py
+# 2. Features for clustering
+# ---------------------------
+X = df[["State_num", "District_num", "Demo_age_5_17", "Demo_age_17+"]]
+
+# ---------------------------
+# 3. Scale features
+# ---------------------------
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# ---------------------------
+# 4. Apply KMeans
+# ---------------------------
+kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
+df["Cluster"] = kmeans.fit_predict(X_scaled)
+
+# ---------------------------
+# 5. Check results
+# ---------------------------
+print(df[["State", "District", "Demo_age_5_17", "Demo_age_17+", "Cluster"]].head())
+
+```
+
+## Vizualizing with plots
+
+```py
+# 6. Visualize clusters
+# ---------------------------
+plt.figure(figsize=(8,6))
+plt.scatter(df["Demo_age_5_17"], df["Demo_age_17+"], 
+            c=df["Cluster"], cmap="viridis", s=80)
+plt.xlabel("Demo_age_5_17")
+plt.ylabel("Demo_age_17+")
+plt.title("KMeans Clustering (State + District + Age)")
+plt.colorbar(label="Cluster")
+plt.show()
+```
+<img width="703" height="547" alt="image" src="https://github.com/user-attachments/assets/00713be9-b42f-43e9-9810-eb684c74737a" />
+
+## But how do I decide the number of cluster - Let`s use Elbow method
+
+
+```py
+# ---------------------------
+# 4. Elbow method
+# ---------------------------
+inertia = []
+K = range(1, 11)  # test cluster numbers from 1 to 10
+
+for k in K:
+    kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
+    kmeans.fit(X_scaled)
+    inertia.append(kmeans.inertia_)  # inertia = sum of squared distances
+
+# ---------------------------
+# 5. Plot elbow curve
+# ---------------------------
+plt.figure(figsize=(8,6))
+plt.plot(K, inertia, marker='o')
+plt.xlabel("Number of Clusters (k)")
+plt.ylabel("Inertia (SSE)")
+plt.title("Elbow Method for Optimal k")
+plt.show()
+```
+The curve starts to flatten for the first time when k = 4
+
+<img width="713" height="547" alt="image" src="https://github.com/user-attachments/assets/e29b75f6-104e-48ff-888c-aac303cf2e26" />
+
+
+```py
+cluster_summary = df.groupby(["State", "Cluster"]).size().unstack(fill_value=0)
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Heatmap: clusters per state
+plt.figure(figsize=(12,8))
+sns.heatmap(cluster_summary, annot=True, fmt="d", cmap="YlGnBu")
+plt.title("District Distribution Across Clusters by State")
+plt.show()
+```
+<img width="1226" height="701" alt="image" src="https://github.com/user-attachments/assets/9fb16368-e3b1-40c1-9db0-457a4af922e5" />
+
+## Example Interpretations
+
+Example Interpretations
+
+Andaman and Nicobar Islands
+
+All 8 records went to Cluster 0.
+
+Means this state’s data is homogeneous and fits into one cluster.
+
+Andhra Pradesh
+
+1991 in Cluster 0, 8 in Cluster 1.
+
+Majority behavior is like Cluster 0, but a small subset differs enough to go to Cluster 1.
+
+Bihar
+
+878 in Cluster 0, 51 in Cluster 1.
+
+Similar to Andhra Pradesh: mostly Cluster 0, but some records fall in Cluster 1.
+
+Delhi
+
+155 in Cluster 0, 152 in Cluster 1, 20 in Cluster 3.
+
+Unlike most states, Delhi’s records are spread across multiple clusters, suggesting greater internal diversity in the data (districts vary more in demographics).
+
+
 
 
