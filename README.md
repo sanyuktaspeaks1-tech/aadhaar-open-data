@@ -42,6 +42,23 @@ import pandas as pd
 df = pd.read_csv("/content/Demographic_update_data_March-July.csv")
 
 print(df.head())  # show first 5 rows
-``
+```
+<img width="681" height="277" alt="image" src="https://github.com/user-attachments/assets/82faf187-a82a-4889-a308-acb01395e644" />
+
+## Identify unique entries and counts
+
+```py
+df["State"].unique()
+```
+<img width="665" height="210" alt="image" src="https://github.com/user-attachments/assets/a5f58811-d661-4bfe-8c24-0bb36d10af60" />
+
+```py
+```
+
+```py
+df["State"].value_counts()
+<img width="496" height="347" alt="image" src="https://github.com/user-attachments/assets/9c0130e6-48ba-4c6b-a28a-d0439eff77dc" />
+
+```
 
 
