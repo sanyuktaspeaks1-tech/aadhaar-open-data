@@ -168,25 +168,14 @@ plt.show()
 
 Example Interpretations
 
-Andaman and Nicobar Islands
+✅Andaman and Nicobar Islands
 
 All 8 records went to Cluster 0.
 
 Means this state’s data is homogeneous and fits into one cluster.
 
-Andhra Pradesh
 
-1991 in Cluster 0, 8 in Cluster 1.
-
-Majority behavior is like Cluster 0, but a small subset differs enough to go to Cluster 1.
-
-Bihar
-
-878 in Cluster 0, 51 in Cluster 1.
-
-Similar to Andhra Pradesh: mostly Cluster 0, but some records fall in Cluster 1.
-
-Delhi
+✅Delhi
 
 155 in Cluster 0, 152 in Cluster 1, 20 in Cluster 3.
 
