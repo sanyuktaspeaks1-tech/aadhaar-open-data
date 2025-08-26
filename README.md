@@ -5,3 +5,13 @@ The Aadhaar Enrolment and Update Data catalog provides monthly statistics on Aad
 
 # Register on the site and dowload the data
 https://www.data.gov.in/catalog/aadhaar-enrolment-and-update-data
+
+We can do a couple of things with this dataset
+Let`s start with KMeans
+
+# K-Means is an unsupervised machine learning algorithm used to group similar data points into clusters.
+It doesn’t need labels (like supervised learning). Instead, it only looks at the features and tries to find patterns.
+
+“K” = number of clusters you want.
+
+“Means” = each cluster is represented by the mean (centroid) of its data points.
