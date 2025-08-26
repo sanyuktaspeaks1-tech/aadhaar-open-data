@@ -156,7 +156,7 @@ Go back to the code and change it to 4 clusters
 
 
 ```py
-cluster_summary = df.groupby(["State", "Cluster"]).size().unstack(fill_value=0)
+cluster_summary = df.groupby(["State", "Cluster"]).size().unstack(fill_value=0) #fill_value=0 ensures that if a state doesn’t have any district in a cluster, it shows 0 instead of NaN.
 import seaborn as sns
 import matplotlib.pyplot as plt
 
