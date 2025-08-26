@@ -27,3 +27,21 @@ Assign Step: Each data point is assigned to the nearest centroid (Euclidean dist
 Update Step: Recalculate the centroid of each cluster (mean of all points in that cluster).
 
 Repeat steps 3 & 4 until centroids stop moving (convergence).
+
+## How to upload the downloaded csv file in google colab
+<img width="1118" height="677" alt="image" src="https://github.com/user-attachments/assets/8872ce27-4ed0-4704-9e11-c905feb935eb" />
+
+## Click on 3 dots then click on copy path
+
+<img width="364" height="340" alt="image" src="https://github.com/user-attachments/assets/561ceb8c-41b8-463a-b6c4-2f564365622f" />
+
+```py
+import pandas as pd
+
+# Load CSV file
+df = pd.read_csv("/content/Demographic_update_data_March-July.csv")
+
+print(df.head())  # show first 5 rows
+``
+
+
