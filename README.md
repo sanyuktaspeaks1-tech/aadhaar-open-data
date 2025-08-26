@@ -185,6 +185,15 @@ Means this state’s data is homogeneous and fits into one cluster.
 
 Unlike most states, Delhi’s records are spread across multiple clusters, suggesting greater internal diversity in the data (districts vary more in demographics).
 
+## Insights on clusters
+Cluster 0 dominates most states → This means many states share similar characteristics (most districts are similar in age distribution).
+
+Cluster 1 is a smaller group, capturing some outliers or slightly different demographics.
+
+Cluster 2 is empty so far → Either rare patterns or KMeans didn’t find strong separation for that group.
+
+Cluster 3 appears in Metropolitain regions  → Delhi/Gujrat/Harayana has some unique districts very different from the rest of India.
+
 
 
 
