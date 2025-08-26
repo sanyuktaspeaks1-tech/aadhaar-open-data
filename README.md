@@ -52,13 +52,14 @@ df["State"].unique()
 ```
 <img width="665" height="210" alt="image" src="https://github.com/user-attachments/assets/a5f58811-d661-4bfe-8c24-0bb36d10af60" />
 
-```py
-```
+
 
 ```py
 df["State"].value_counts()
 ```
 <img width="496" height="347" alt="image" src="https://github.com/user-attachments/assets/9c0130e6-48ba-4c6b-a28a-d0439eff77dc" />
+
+
 ```py
 import pandas as pd
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
