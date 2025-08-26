@@ -150,6 +150,10 @@ The curve starts to flatten for the first time when k = 4
 
 <img width="713" height="547" alt="image" src="https://github.com/user-attachments/assets/e29b75f6-104e-48ff-888c-aac303cf2e26" />
 
+Go back to the code and change it to 4 clusters
+<img width="694" height="547" alt="image" src="https://github.com/user-attachments/assets/313c4b53-60f6-487c-b14b-8b42d746f9b7" />
+
+
 
 ```py
 cluster_summary = df.groupby(["State", "Cluster"]).size().unstack(fill_value=0)
